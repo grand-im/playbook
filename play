@@ -1,0 +1,5 @@
+#!/bin/sh
+set -eu
+
+ansible-playbook site.yml --ask-become-pass --inventory-file=hosts "$@"
+

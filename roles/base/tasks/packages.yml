@@ -1,0 +1,25 @@
+- name: packages
+  become: yes
+  apt:
+    state: "present"
+    install_recommends: no
+    name:
+      # core things that are missing from some images:
+      - apt-transport-https
+      - libpam-systemd      # enable systemd --user
+      - openssh-server      # fixes e.g. sftp being missing
+      - procps              # pwdx, pkill, free, etc.
+      - psmisc              # killall
+      - software-properties-common # fixes ppas
+      # ansible/setup helpers:
+      - acl                 # for the ansible setfacl stuff
+      - aptitude
+      - git
+      - python-apt
+      - python
+      - python3-apt
+      - python3
+      # interactive use helpers:
+      - curl
+      - tmux
+      - zsh

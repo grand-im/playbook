@@ -1,0 +1,4 @@
+- hosts:
+    - tango.grand.im
+  roles:
+    - base

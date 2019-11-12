@@ -1,0 +1,10 @@
+- name: set hostname
+  hostname:
+    name: "{{ inventory_hostname }}"
+  become: yes
+
+- name: etc hosts
+  template:
+    src: "etc-hosts.j2"
+    dest: "/etc/hosts"
+  become: yes
