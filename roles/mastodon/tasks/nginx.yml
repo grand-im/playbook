@@ -6,3 +6,9 @@
   become: yes
   notify:
     - reload nginx
+
+- name: ufw allows nginx
+  ufw:
+    rule: allow
+    name: Nginx Full
+  become: yes
