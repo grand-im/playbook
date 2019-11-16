@@ -1,0 +1,11 @@
+## managed by ansible
+
+PasswordAuthentication no
+PermitRootLogin prohibit-password
+
+## based on ubuntu:18.04 config:
+
+ChallengeResponseAuthentication no
+UsePAM yes
+AcceptEnv LANG LC_*
+Subsystem	sftp	/usr/lib/openssh/sftp-server

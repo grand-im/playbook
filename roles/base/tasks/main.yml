@@ -1,2 +1,3 @@
-- include: hostname.yml
-- include: packages.yml
+- import_tasks: hostname.yml
+- import_tasks: packages.yml
+- import_tasks: ssh.yml
