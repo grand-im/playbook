@@ -23,6 +23,7 @@
       - postgresql-client-12
       - redis-server
       - redis-tools
+      - yarn
       # build-essentials
       - autoconf
       - build-essential
@@ -53,5 +54,3 @@
       # media
       - imagemagick
       - ffmpeg
-
-# also requested: yarn
