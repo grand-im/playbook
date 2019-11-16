@@ -1,0 +1,8 @@
+- name: copy nginx config
+  copy:
+    src: mastodon.nginx
+    dest: /etc/nginx/sites-enabled/mastodon
+    mode: '0644'
+  become: yes
+  notify:
+    - reload nginx

@@ -1,0 +1,10 @@
+- name: copy postgres config
+  copy:
+    src: postgresql.conf
+    dest: /etc/postgresql/12/main/postgresql.conf
+    owner: postgres
+    group: postgres
+    mode: '0644'
+  become: yes
+  notify:
+    - restart postgres
