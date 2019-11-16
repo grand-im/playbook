@@ -1,0 +1,13 @@
+- name: rbenv setup script
+  script:
+    cmd: setup-rbenv.sh
+    creates: /home/mastodon/.rbenv/plugins/ruby-build
+  become_user: mastodon
+  become: yes
+
+- name: rbenv install
+  shell:
+    chdir: /home/mastodon/live
+    cmd: env RUBY_CONFIGURE_OPTS=--with-jemalloc PATH=/home/mastodon/.rbenv/bin:$PATH rbenv install
+  become_user: mastodon
+  become: yes

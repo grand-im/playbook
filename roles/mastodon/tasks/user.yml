@@ -1,0 +1,16 @@
+- name: create mastodon user
+  user:
+    name: mastodon
+    system: yes
+    shell: /bin/bash
+    # password: defaults to --disable-password
+  become: yes
+
+- name: clone mastodon
+  git:
+    repo: https://github.com/tootsuite/mastodon.git
+    dest: /home/mastodon/live
+    version: v3.0.1
+    update: no
+  become: yes
+  become_user: mastodon
