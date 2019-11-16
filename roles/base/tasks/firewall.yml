@@ -1,0 +1,11 @@
+- name: ufw allows ssh
+  ufw:
+    rule: allow
+    name: OpenSSH
+  become: yes
+
+- name: ufw rejects unknown traffic
+  ufw:
+    state: enabled
+    default: reject
+  become: yes
