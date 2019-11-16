@@ -8,3 +8,8 @@
     src: "etc-hosts.j2"
     dest: "/etc/hosts"
   become: yes
+
+- name: timezone to utc
+  timezone:
+    name: Etc/UTC
+  become: yes
