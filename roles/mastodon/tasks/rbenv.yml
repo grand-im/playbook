@@ -8,6 +8,14 @@
 - name: rbenv install
   shell:
     chdir: /home/mastodon/live
-    cmd: env RUBY_CONFIGURE_OPTS=--with-jemalloc PATH=/home/mastodon/.rbenv/bin:$PATH rbenv install
+    cmd: env RUBY_CONFIGURE_OPTS=--with-jemalloc PATH=/home/mastodon/.rbenv/bin:$PATH rbenv install 2.6.5
+    creates: /home/mastodon/.rbenv/versions/2.6.5
+  become_user: mastodon
+  become: yes
+
+- name: rbenv global
+  shell:
+    chdir: /home/mastodon/live
+    cmd: env PATH=/home/mastodon/.rbenv/bin:$PATH rbenv global 2.6.5
   become_user: mastodon
   become: yes
