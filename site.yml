@@ -2,3 +2,4 @@
     - tango.grand.im
   roles:
     - base
+    - mastodon

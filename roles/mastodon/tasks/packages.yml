@@ -1,0 +1,57 @@
+- name: configure apt lists
+  copy:
+    src: mastodon.list
+    dest: /etc/apt/sources.list.d/mastodon.list
+  become: yes
+
+- name: configure apt keys
+  copy:
+    src: mastodon.gpg
+    dest: /etc/apt/trusted.gpg.d/mastodon.gpg
+  become: yes
+
+- name: packages
+  become: yes
+  apt:
+    update_cache: yes
+    state: "present"
+    install_recommends: no
+    name:
+      # named, major dependencies
+      - nodejs
+      - postgresql-12
+      - postgresql-client-12
+      - redis-server
+      - redis-tools
+      # build-essentials
+      - autoconf
+      - build-essential
+      - bison
+      - file
+      - gcc
+      - pkg-config
+      - protobuf-compiler
+      # -dev packages
+      - libffi-dev
+      - libgdbm-dev
+      - libicu-dev
+      - libidn11-dev
+      - libjemalloc-dev
+      - libncurses5-dev
+      - libpq-dev
+      - libprotobuf-dev
+      - libreadline6-dev
+      - libssl-dev
+      - libxml2-dev
+      - libxslt1-dev
+      - libyaml-dev
+      - zlib1g-dev
+      # web
+      - nginx
+      - certbot
+      - python-certbot-nginx
+      # media
+      - imagemagick
+      - ffmpeg
+
+# also requested: yarn

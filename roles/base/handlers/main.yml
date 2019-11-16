@@ -2,3 +2,4 @@
   service:
     name: ssh
     state: reloaded
+  become: yes
