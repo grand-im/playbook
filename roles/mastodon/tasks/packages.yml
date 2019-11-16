@@ -10,7 +10,7 @@
     dest: /etc/apt/trusted.gpg.d/mastodon.gpg
   become: yes
 
-- name: packages
+- name: mastodon packages
   become: yes
   apt:
     update_cache: yes

@@ -5,10 +5,12 @@
   become_user: mastodon
   become: yes
 
+# ansible evades ~/.bashrc, so we have to manually path to, or load, rbenv
+
 - name: rbenv install
   shell:
     chdir: /home/mastodon/live
-    cmd: env RUBY_CONFIGURE_OPTS=--with-jemalloc PATH=/home/mastodon/.rbenv/bin:$PATH rbenv install 2.6.5
+    cmd: env RUBY_CONFIGURE_OPTS=--with-jemalloc ~mastodon/.rbenv/bin/rbenv install 2.6.5
     creates: /home/mastodon/.rbenv/versions/2.6.5
   become_user: mastodon
   become: yes
@@ -16,6 +18,18 @@
 - name: rbenv global
   shell:
     chdir: /home/mastodon/live
-    cmd: env PATH=/home/mastodon/.rbenv/bin:$PATH rbenv global 2.6.5
+    cmd: ~mastodon/.rbenv/bin/rbenv global 2.6.5
+  become_user: mastodon
+  become: yes
+
+- name: gem update
+  shell:
+    cmd: 'eval "$(~mastodon/.rbenv/bin/rbenv init -)" && gem update --system'
+  become_user: mastodon
+  become: yes
+
+- name: bundler install
+  shell:
+    cmd: 'eval "$(~mastodon/.rbenv/bin/rbenv init -)" && gem install bundler --no-document --force'
   become_user: mastodon
   become: yes
