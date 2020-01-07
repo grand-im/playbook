@@ -9,3 +9,13 @@
     name: postgresql
     state: restarted
   become: yes
+
+- name: restart mastodon
+  service:
+    name: "{{ item }}"
+    state: restarted
+  with_items:
+    - mastodon-sidekiq.service
+    - mastodon-streaming.service
+    - mastodon-web.service
+  become: yes

@@ -1,0 +1,22 @@
+- name: copy services
+  copy:
+    src: "{{ item }}"
+    dest: /etc/systemd/system
+  become: yes
+  with_items:
+    - mastodon-sidekiq.service
+    - mastodon-streaming.service
+    - mastodon-web.service
+  notify:
+    - restart mastodon
+
+- name: enable services
+  systemd:
+    name: "{{ item }}"
+    daemon_reload: yes
+    enabled: yes
+  become: yes
+  with_items:
+    - mastodon-sidekiq.service
+    - mastodon-streaming.service
+    - mastodon-web.service
